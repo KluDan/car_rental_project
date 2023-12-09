@@ -1,5 +1,7 @@
-const CarCatalog = () => {
-  return <div>CarCatalog</div>;
+import React from "react";
+
+const index = () => {
+  return <div>index</div>;
 };
 
-export default CarCatalog;
+export default index;
