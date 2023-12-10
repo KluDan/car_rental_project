@@ -64,7 +64,7 @@ Error generating stack: `+i.message+`
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */const Hg="startTransition",nf=fs[Hg];function Qg(e){let{basename:t,children:n,future:r,window:o}=e,i=O.useRef();i.current==null&&(i.current=tg({window:o,v5Compat:!0}));let l=i.current,[s,u]=O.useState({action:l.action,location:l.location}),{v7_startTransition:a}=r||{},c=O.useCallback(f=>{a&&nf?nf(()=>u(f)):u(f)},[u,a]);return O.useLayoutEffect(()=>l.listen(c),[l,c]),O.createElement(Wg,{basename:t,children:n,location:s.location,navigationType:s.action,navigator:l})}var rf;(function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"})(rf||(rf={}));var of;(function(e){e.UseFetcher="useFetcher",e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"})(of||(of={}));const Kg=O.lazy(()=>Ea(()=>import("./index-SJauipcE.js"),__vite__mapDeps([]))),Gg=O.lazy(()=>Ea(()=>import("./index-aSnM883w.js"),__vite__mapDeps([]))),Yg=O.lazy(()=>Ea(()=>import("./index-AWBYt491.js"),__vite__mapDeps([]))),qg=()=>pe.jsx(O.Suspense,{fallback:pe.jsx("div",{children:"Loading..."}),children:pe.jsxs(Vg,{children:[pe.jsx(Nr,{path:"/",index:!0,element:pe.jsx(Kg,{})}),pe.jsx(Nr,{path:"/catalog",element:pe.jsx(Gg,{})}),pe.jsx(Nr,{path:"/favorites",element:pe.jsx(Yg,{})}),pe.jsx(Nr,{path:"*",element:pe.jsx(Bg,{to:"/"})})]})});var hh={exports:{}},mh={};/**
+ */const Hg="startTransition",nf=fs[Hg];function Qg(e){let{basename:t,children:n,future:r,window:o}=e,i=O.useRef();i.current==null&&(i.current=tg({window:o,v5Compat:!0}));let l=i.current,[s,u]=O.useState({action:l.action,location:l.location}),{v7_startTransition:a}=r||{},c=O.useCallback(f=>{a&&nf?nf(()=>u(f)):u(f)},[u,a]);return O.useLayoutEffect(()=>l.listen(c),[l,c]),O.createElement(Wg,{basename:t,children:n,location:s.location,navigationType:s.action,navigator:l})}var rf;(function(e){e.UseScrollRestoration="useScrollRestoration",e.UseSubmit="useSubmit",e.UseSubmitFetcher="useSubmitFetcher",e.UseFetcher="useFetcher",e.useViewTransitionState="useViewTransitionState"})(rf||(rf={}));var of;(function(e){e.UseFetcher="useFetcher",e.UseFetchers="useFetchers",e.UseScrollRestoration="useScrollRestoration"})(of||(of={}));const Kg=O.lazy(()=>Ea(()=>import("./index-K2z2kdca.js"),__vite__mapDeps([]))),Gg=O.lazy(()=>Ea(()=>import("./index-9yITLQx1.js"),__vite__mapDeps([]))),Yg=O.lazy(()=>Ea(()=>import("./index-IC34L9TU.js"),__vite__mapDeps([]))),qg=()=>pe.jsx(O.Suspense,{fallback:pe.jsx("div",{children:"Loading..."}),children:pe.jsxs(Vg,{children:[pe.jsx(Nr,{path:"/",index:!0,element:pe.jsx(Kg,{})}),pe.jsx(Nr,{path:"/catalog",element:pe.jsx(Gg,{})}),pe.jsx(Nr,{path:"/favorites",element:pe.jsx(Yg,{})}),pe.jsx(Nr,{path:"*",element:pe.jsx(Bg,{to:"/"})})]})});var hh={exports:{}},mh={};/**
  * @license React
  * use-sync-external-store-with-selector.production.min.js
  *
@@ -160,7 +160,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-`;ds.createRoot(document.getElementById("root")).render(pe.jsx(Be.StrictMode,{children:pe.jsx(gv,{store:Bw,children:pe.jsxs(Qg,{basename:"/car_rental_project",children:[pe.jsx(qg,{}),pe.jsx(QS,{})]})})}));export{GS as a,XS as b,ZS as c,bS as d,eE as e,tE as f,nE as g,ls as h,pe as j,qS as n,O as r,WS as s,YS as u};
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+`;ds.createRoot(document.getElementById("root")).render(pe.jsx(Be.StrictMode,{children:pe.jsx(gv,{store:Bw,children:pe.jsxs(Qg,{basename:"/car_rental_project",children:[pe.jsx(qg,{}),pe.jsx(QS,{})]})})}));export{Be as R,GS as a,XS as b,bS as c,tE as d,nE as e,ls as f,eE as g,ZS as h,pe as j,qS as n,O as r,WS as s,YS as u};
 function __vite__mapDeps(indexes) {
   if (!__vite__mapDeps.viteFileDeps) {
     __vite__mapDeps.viteFileDeps = []
