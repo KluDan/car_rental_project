@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 import {
@@ -9,6 +9,7 @@ import {
   DropDownMain,
   DropdownOptions,
   DropdownWrapper,
+  StyleLabel,
 } from "./DropDownMakes.styled";
 
 const DropDownMakes = () => {
@@ -17,6 +18,8 @@ const DropDownMakes = () => {
   const [inputText, setInputText] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +36,22 @@ const DropDownMakes = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setInputText(item.charAt(0).toUpperCase() + item.slice(1));
@@ -47,21 +66,24 @@ const DropDownMakes = () => {
     setFilteredOptions(
       jsonData.filter((item) => item.toLowerCase().includes(text.toLowerCase()))
     );
-    setFilteredOptions(filtered.length > 0 ? filtered : jsonData);
   };
+
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
     setFilteredOptions(jsonData);
   };
 
   return (
-    <DropdownWrapper>
+    <DropdownWrapper ref={dropdownRef}>
+      <StyleLabel htmlFor="carMakes">Car Brand:</StyleLabel>
       <DropDownMain>
         <DropdownInput
+          id="carMakes"
           value={inputText}
           onChange={handleInputChange}
           placeholder="Enter the text"
         />
+
         <DropdownButton onClick={handleToggleDropdown}>
           {isOpen ? (
             <ChevronIcon>

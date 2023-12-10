@@ -1,14 +1,9 @@
-import CarCard from "../../components/CarCard/CarCard";
-import CarsCatalog from "../../components/CarsCatalog/CarsCatalog";
-import DropDownMakes from "../../components/DropDownMakes/DropDownMakes";
-import LoadMoreBtn from "../../components/LoadMoreBtn";
+import React from "react";
 
 const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      {/*  <DropDownMakes /> */}
-      <CarsCatalog />
     </div>
   );
 };

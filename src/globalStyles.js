@@ -81,4 +81,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
 `;

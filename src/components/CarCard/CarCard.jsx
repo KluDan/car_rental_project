@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { theme } from "../../theme";
@@ -89,6 +89,22 @@ const CarCard = ({ car }) => {
 
   const imageUrl = imageError ? "/car_rental_project/defaultCarImage.jpg" : img;
 
+  const [isFavorite, setIsFavorite] = useState(
+    localStorage.getItem("favoriteCarId") === car.id.toString()
+  );
+
+  const handleHeartClick = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  useEffect(() => {
+    if (isFavorite) {
+      localStorage.setItem("favoriteCarId", car.id.toString());
+    } else {
+      localStorage.removeItem("favoriteCarId");
+    }
+  }, [isFavorite, car.id]);
+
   return (
     <StyledCarCard>
       <StyledCardMedia
@@ -105,8 +121,12 @@ const CarCard = ({ car }) => {
         <span>{rentalPrice}</span>
       </StyledCardMainInfo>
       <CarDetails details={carDetails} />
-      <MainButton buttonTitle="Learn more" />
-      <HeartIcon />
+      <MainButton buttonTitle="Learn more" width={"100%"} />
+      <HeartIcon
+        fill={isFavorite ? theme.colors.primaryBlue : "none"}
+        stroke={isFavorite ? "none" : theme.colors.bodyMain}
+        onClick={handleHeartClick}
+      />
     </StyledCarCard>
   );
 };

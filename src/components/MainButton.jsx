@@ -3,23 +3,25 @@ import styled from "styled-components";
 import { theme } from "../theme";
 
 const StyledCardButton = styled.button`
-  width: 100%;
+  width: ${(props) => props.width};
   color: ${theme.colors.bodyMain};
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
   background-color: ${theme.colors.primaryBlue};
-  border: none;
   border-radius: 12px;
   padding-block: ${(props) => props.padding || "12px"};
-  cursor: pointer;
   transition: ${theme.transitions.default};
   &:hover {
     background-color: ${theme.colors.secondaryBlue};
   }
 `;
-const MainButton = ({ buttonTitle, padding }) => {
-  return <StyledCardButton padding={padding}>{buttonTitle}</StyledCardButton>;
+const MainButton = ({ buttonTitle, padding, width }) => {
+  return (
+    <StyledCardButton padding={padding} width={width}>
+      {buttonTitle}
+    </StyledCardButton>
+  );
 };
 
 export default MainButton;

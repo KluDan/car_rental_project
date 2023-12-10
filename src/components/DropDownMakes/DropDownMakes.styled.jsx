@@ -14,7 +14,6 @@ export const DropDownMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
 `;
 export const DropdownInput = styled.input`
   width: 100%;
@@ -28,13 +27,22 @@ export const DropdownInput = styled.input`
   font-weight: 500;
   line-height: 20px;
 `;
+
+export const StyleLabel = styled.label`
+  color: ${theme.colors.labelText};
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  margin-bottom: 8px;
+`;
+
 export const DropdownButton = styled.button`
   background: none;
   width: 20px;
   height: 20px;
-  cursor: pointer;
-  border: none;
   display: flex;
+  padding: 5px;
   justify-content: center;
   align-items: center;
 `;
@@ -49,11 +57,13 @@ export const DropdownOptions = styled.ul`
   height: 272px;
   overflow: auto;
   position: absolute;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 8px;
   top: 100%;
   left: 0;
+  margin-top: 4px;
   margin: 0;
   padding: 14px 8px 14px 18px;
   list-style: none;
