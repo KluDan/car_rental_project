@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { theme } from "../../theme";
@@ -50,8 +50,9 @@ const CarDetails = ({ details }) => {
   );
 };
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car, onHeartClick, isFavorite }) => {
   const {
+    id,
     address,
     img,
     make,
@@ -89,21 +90,9 @@ const CarCard = ({ car }) => {
 
   const imageUrl = imageError ? "/car_rental_project/defaultCarImage.jpg" : img;
 
-  const [isFavorite, setIsFavorite] = useState(
-    localStorage.getItem("favoriteCarId") === car.id.toString()
-  );
-
   const handleHeartClick = () => {
-    setIsFavorite(!isFavorite);
+    onHeartClick(id);
   };
-
-  useEffect(() => {
-    if (isFavorite) {
-      localStorage.setItem("favoriteCarId", car.id.toString());
-    } else {
-      localStorage.removeItem("favoriteCarId");
-    }
-  }, [isFavorite, car.id]);
 
   return (
     <StyledCarCard>

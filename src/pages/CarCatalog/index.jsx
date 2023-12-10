@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import CarsCatalog from "../../components/CarsCatalog/CarsCatalog";
-import DropDownMakes from "../../components/DropDownMakes/DropDownMakes";
 import FilterSection from "../../components/FilterSection/FilterSection";
 import LoadMoreBtn from "../../components/LoadMoreBtn";
+
+import { StyledCatalogContainer } from "./CarCatalog.styled";
+
 import {
-  fetchCars,
-  selectCars,
   selectCurrentPage,
   selectIsLoading,
   selectPageSize,
   selectTotalResults,
-} from "../../redux/carSlice";
-import { StyledCatalogContainer } from "./CarCatalog.styled";
+} from "../../redux/selectors";
+import { fetchCars } from "../../redux/operations";
 
 const index = () => {
   const dispatch = useDispatch();

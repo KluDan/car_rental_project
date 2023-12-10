@@ -1,6 +1,8 @@
 import React from "react";
+
 import DropDownMakes from "../DropDownMakes/DropDownMakes";
 import MainButton from "../MainButton";
+
 import { StyledFilterSection } from "./FilterSection.styled";
 
 const FilterSection = () => {
