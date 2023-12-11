@@ -1,43 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { setInputValue } from "../../redux/carSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterPriceValue } from "../../redux/carSlice";
 
 import {
   ChevronIcon,
   DropdownButton,
-  DropdownInput,
   DropdownItem,
   DropDownMain,
   DropdownOptions,
   DropdownWrapper,
   StyledLabel,
-} from "./DropDownMakes.styled";
+} from "./DropDownPrice.styled";
 
-const DropDownMakes = () => {
-  const [jsonData, setJsonData] = useState([]);
+const DropDownPrice = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [inputText, setInputText] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
-
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/car_rental_project/makes.json");
-        const data = await response.text();
-        const dataArray = JSON.parse(data);
-        setJsonData(dataArray);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-    fetchData();
+    const numbersArray = Array.from(
+      { length: 20 },
+      (_, index) => (index + 1) * 10
+    );
+    setFilteredOptions(numbersArray);
   }, []);
 
   useEffect(() => {
@@ -58,38 +47,18 @@ const DropDownMakes = () => {
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    setInputText(item.charAt(0).toUpperCase() + item.slice(1));
     setIsOpen(false);
-    setFilteredOptions(jsonData);
-    dispatch(setInputValue(item));
-  };
-
-  const handleInputChange = (event) => {
-    const text = event.target.value.trim().toLowerCase();
-    setInputText(text);
-    setIsOpen(true);
-    setFilteredOptions(
-      jsonData.filter((item) => item.toLowerCase().includes(text.toLowerCase()))
-    );
-    console.log(text);
   };
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
-    setFilteredOptions(jsonData);
   };
 
   return (
     <DropdownWrapper ref={dropdownRef}>
-      <StyledLabel htmlFor="carMakes">Car Brand:</StyledLabel>
+      <StyledLabel>Price/ 1hour</StyledLabel>
       <DropDownMain>
-        <DropdownInput
-          id="carMakes"
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder="Enter the text"
-        />
-
+        <p>To {selectedItem}$</p>
         <DropdownButton onClick={handleToggleDropdown}>
           {isOpen ? (
             <ChevronIcon>
@@ -111,7 +80,7 @@ const DropDownMakes = () => {
               selected={selectedItem === item}
               onClick={() => handleItemClick(item)}
             >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
+              {item}
             </DropdownItem>
           ))}
         </DropdownOptions>
@@ -120,4 +89,4 @@ const DropDownMakes = () => {
   );
 };
 
-export default DropDownMakes;
+export default DropDownPrice;

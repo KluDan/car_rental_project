@@ -1,5 +1,12 @@
+import React, { useEffect, useState } from "react";
+import FavoriteCatalog from "../../components/FavoritesCatalog/FavoriteCarsCatalog";
+
 const SavedCars = () => {
-  return <div>SavedCars</div>;
+  return (
+    <>
+      <FavoriteCatalog />
+    </>
+  );
 };
 
 export default SavedCars;

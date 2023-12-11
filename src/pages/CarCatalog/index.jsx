@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CarsCatalog from "../../components/CarsCatalog/CarsCatalog";
@@ -21,15 +21,8 @@ const index = () => {
   const currentPage = useSelector(selectCurrentPage);
   const isLoading = useSelector(selectIsLoading);
   const limit = useSelector(selectPageSize);
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  useEffect(() => {
-    window.scrollTo(0, scrollPosition);
-  }, [totalResults, scrollPosition]);
 
   const handleLoadMore = async () => {
-    setScrollPosition(window.scrollY);
-
     dispatch(fetchCars({ page: currentPage + 1, limit, append: true }));
   };
 

@@ -16,9 +16,9 @@ const StyledCardButton = styled.button`
     background-color: ${theme.colors.secondaryBlue};
   }
 `;
-const MainButton = ({ buttonTitle, padding, width }) => {
+const MainButton = ({ buttonTitle, padding, width, onClick }) => {
   return (
-    <StyledCardButton padding={padding} width={width}>
+    <StyledCardButton padding={padding} width={width} onClick={onClick}>
       {buttonTitle}
     </StyledCardButton>
   );

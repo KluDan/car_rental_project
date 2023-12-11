@@ -10,6 +10,8 @@ const carSlice = createSlice({
     currentPage: 1,
     limit: 12,
     totalResults: 0,
+    inputValue: "",
+    filterPriceValue: "",
   },
   reducers: {
     nextPage: (state) => {
@@ -17,6 +19,17 @@ const carSlice = createSlice({
     },
     setPageSize: (state, action) => {
       state.limit = action.payload;
+    },
+    setInputValue: (state, action) => {
+      state.inputValue = action.payload;
+    },
+    setFilterPriceValue: (state, action) => {
+      state.filterPriceValue = action.payload;
+    },
+    resetCars: (state) => {
+      state.cars = [];
+      state.currentPage = 1;
+      state.totalResults = 0;
     },
   },
   extraReducers: (builder) =>
@@ -36,6 +49,12 @@ const carSlice = createSlice({
       }),
 });
 
-export const { nextPage, setPageSize } = carSlice.actions;
+export const {
+  nextPage,
+  setPageSize,
+  setInputValue,
+  setFilterPriceValue,
+  resetCars,
+} = carSlice.actions;
 
 export default carSlice.reducer;

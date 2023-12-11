@@ -20,3 +20,36 @@ export const fetchCars = createAsyncThunk(
     }
   }
 );
+
+export const fetchAllCars = createAsyncThunk(
+  "cars/fetchCars",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/adverts", {});
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchFilteredCars = createAsyncThunk(
+  "cars/fetchCars",
+  async (params, thunkAPI) => {
+    console.log("Fetching cars with params:", params);
+    try {
+      const response = await axios.get("/adverts", {
+        params: {
+          page: params.page,
+          limit: params.limit,
+          make: params.make,
+        },
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

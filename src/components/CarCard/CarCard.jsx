@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { theme } from "../../theme";
+import { CarDetails } from "../CarDetails";
+import { CarDetailsModal } from "../CarDetailsModal/CarDetailsModal";
+
 import HeartIcon from "../HeartIcon";
 import MainButton from "../MainButton";
+
 import {
   StyledCarCard,
   StyledCardMainInfo,
@@ -11,46 +15,7 @@ import {
   StyledCarTitle,
 } from "./CarCard.styled";
 
-const StyledCarDetailsContainer = styled.ul`
-  display: flex;
-  row-gap: 4px;
-  column-gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-  list-style: none;
-`;
-
-const StyledCarDetail = styled.li`
-  color: ${theme.colors.secondaryText};
-  font-size: 12px;
-  line-height: 18px;
-  position: relative;
-
-  &:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -6px;
-    transform: translateY(-50%);
-    height: 16px;
-    width: 1px;
-    background-color: rgba(18, 20, 23, 0.1);
-  }
-`;
-
-const CarDetails = ({ details }) => {
-  return (
-    <StyledCarDetailsContainer>
-      {details.map((detail, index) => (
-        <StyledCarDetail key={index}>
-          <p>{detail}</p>
-        </StyledCarDetail>
-      ))}
-    </StyledCarDetailsContainer>
-  );
-};
-
-const CarCard = ({ car, onHeartClick, isFavorite }) => {
+const CarCard = ({ car, onHeartClick, isFavorite, onLearnMoreClick }) => {
   const {
     id,
     address,
@@ -109,8 +74,12 @@ const CarCard = ({ car, onHeartClick, isFavorite }) => {
         <span> {year}</span>
         <span>{rentalPrice}</span>
       </StyledCardMainInfo>
-      <CarDetails details={carDetails} />
-      <MainButton buttonTitle="Learn more" width={"100%"} />
+      <CarDetails details={Array.isArray(carDetails) ? carDetails : []} />
+      <MainButton
+        buttonTitle="Learn more"
+        width={"100%"}
+        onClick={() => onLearnMoreClick(car)}
+      />
       <HeartIcon
         fill={isFavorite ? theme.colors.primaryBlue : "none"}
         stroke={isFavorite ? "none" : theme.colors.bodyMain}

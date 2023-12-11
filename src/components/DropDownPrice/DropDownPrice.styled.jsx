@@ -2,27 +2,18 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 export const DropdownWrapper = styled.div`
-  width: 224px;
+  width: 125px;
   position: relative;
   display: inline-block;
 `;
 export const DropDownMain = styled.div`
-  width: 224px;
+  width: 100%;
   border-radius: 14px;
   background-color: ${theme.colors.inputBackground};
   padding: 9px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-export const DropdownInput = styled.input`
-  width: 80%;
-  outline: none;
-  background-color: transparent;
-  color: ${theme.colors.primaryText};
-  border: none;
-  cursor: pointer;
-  padding: 0 5px 0 0;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
@@ -55,7 +46,7 @@ export const ChevronIcon = styled.span`
 
 export const DropdownOptions = styled.ul`
   width: 100%;
-  height: 272px;
+  height: 188px;
   overflow: auto;
   position: absolute;
   z-index: 100;

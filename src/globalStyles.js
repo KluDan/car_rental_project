@@ -86,4 +86,7 @@ button {
   border: none;
   cursor: pointer;
 }
+ol,ul{
+  list-style: none;
+}
 `;

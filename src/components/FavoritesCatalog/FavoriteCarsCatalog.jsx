@@ -1,33 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CarCard from "../CarCard/CarCard";
-import { StyledCatalogContainer } from "./CarsCatalog.styled";
 
+import { selectCars, selectError, selectPageSize } from "../../redux/selectors";
 import {
   addSelectedCarId,
   removeSelectedCarId,
   selectSelectedCarIds,
 } from "../../redux/favoriteSlice";
-import { selectCars, selectError, selectPageSize } from "../../redux/selectors";
+import { StyledCatalogContainer } from "./FavoriteCarsCatalog.styled";
+import { fetchAllCars } from "../../redux/operations";
 
-import { fetchCars } from "../../redux/operations";
-import { CarDetailsModal } from "../CarDetailsModal/CarDetailsModal";
-
-const CarsCatalog = () => {
+const FavoriteCatalog = () => {
   const dispatch = useDispatch();
-  const cars = useSelector(selectCars);
+  const allCars = useSelector(selectCars);
   const error = useSelector(selectError);
   const limit = useSelector(selectPageSize);
   const selectedCarIds = useSelector(selectSelectedCarIds);
 
-  const [selectedCar, setSelectedCar] = useState(null);
-
   const isMounted = useRef(false);
-
   useEffect(() => {
     if (isMounted.current) {
-      dispatch(fetchCars({ page: 1, limit }));
+      dispatch(fetchAllCars());
     } else {
       isMounted.current = true;
       const localStorageCarIds = localStorage.getItem("favoriteCarIds");
@@ -49,13 +44,7 @@ const CarsCatalog = () => {
     }
   };
 
-  const handleLearnMoreClick = (car) => {
-    setSelectedCar(car);
-  };
-
-  const handleModalClose = () => {
-    setSelectedCar(null);
-  };
+  const favoriteCars = allCars.filter((car) => selectedCarIds.includes(car.id));
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -63,24 +52,16 @@ const CarsCatalog = () => {
 
   return (
     <StyledCatalogContainer>
-      {cars.map((car) => (
+      {favoriteCars.map((car) => (
         <CarCard
           key={car.id}
           car={car}
+          isFavorite={true}
           onHeartClick={() => handleHeartClick(car.id)}
-          isFavorite={selectedCarIds.includes(car.id)}
-          onLearnMoreClick={handleLearnMoreClick}
         />
       ))}
-      {selectedCar && ( // Проверяем, нужно ли открыть модальное окно
-        <CarDetailsModal
-          isOpen={!!selectedCar}
-          onClose={handleModalClose}
-          carDetails={selectedCar}
-        />
-      )}
     </StyledCatalogContainer>
   );
 };
 
-export default CarsCatalog;
+export default FavoriteCatalog;

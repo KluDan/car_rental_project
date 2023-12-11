@@ -8,6 +8,8 @@ export const theme = {
     bodyMain: "#fff",
     secondaryBackground: "#F9F9F9",
     inputBackground: "#F7F7FB",
+    additionalGray: "rgba(138, 138, 137, 0.2)",
+    additionalText: "#363535",
   },
   transitions: {
     default: "0.3s ease-in-out",
