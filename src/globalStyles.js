@@ -34,6 +34,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fff;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 code {

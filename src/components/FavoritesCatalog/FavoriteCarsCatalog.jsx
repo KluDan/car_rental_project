@@ -20,20 +20,19 @@ const FavoriteCatalog = () => {
   const selectedCarIds = useSelector(selectSelectedCarIds);
 
   const isMounted = useRef(false);
-  useEffect(() => {
-    if (isMounted.current) {
-      dispatch(fetchAllCars());
-    } else {
-      isMounted.current = true;
-      const localStorageCarIds = localStorage.getItem("favoriteCarIds");
 
-      if (localStorageCarIds) {
-        const carIds = JSON.parse(localStorageCarIds);
-        carIds.forEach((carId) => {
-          dispatch(addSelectedCarId(carId));
-        });
-      }
+  useEffect(() => {
+    const localStorageCarIds = localStorage.getItem("favoriteCarIds");
+
+    if (localStorageCarIds) {
+      const carIds = JSON.parse(localStorageCarIds);
+
+      carIds.forEach((carId) => {
+        dispatch(addSelectedCarId(carId));
+      });
     }
+
+    dispatch(fetchAllCars());
   }, [dispatch, limit]);
 
   const handleHeartClick = (carId) => {
@@ -44,7 +43,7 @@ const FavoriteCatalog = () => {
     }
   };
 
-  const favoriteCars = allCars.filter((car) => selectedCarIds.includes(car.id));
+  const filteredCars = allCars.filter((car) => selectedCarIds.includes(car.id));
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -52,7 +51,7 @@ const FavoriteCatalog = () => {
 
   return (
     <StyledCatalogContainer>
-      {favoriteCars.map((car) => (
+      {filteredCars.map((car) => (
         <CarCard
           key={car.id}
           car={car}

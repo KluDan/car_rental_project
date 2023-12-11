@@ -1,10 +1,15 @@
 import React from "react";
+import HomeHeroSection from "../../components/HomeHeroSection/HomeHeroSection";
+import HomeVehiclesSection from "../../components/HomeVehiclesSection/HomeVehiclesSection";
+import PromotionsSection from "../../components/PromotionsSection/PromotionsSection";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <HomeHeroSection />
+      <PromotionsSection />
+      <HomeVehiclesSection />
+    </>
   );
 };
 

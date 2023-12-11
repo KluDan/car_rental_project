@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledCatalogContainer = styled.div`
+export const StyledSection = styled.section`
   max-width: 1213px;
   padding-inline: 15px;
   margin: auto;

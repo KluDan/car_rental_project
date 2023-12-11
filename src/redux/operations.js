@@ -22,12 +22,22 @@ export const fetchCars = createAsyncThunk(
 );
 
 export const fetchAllCars = createAsyncThunk(
-  "cars/fetchCars",
+  "cars/fetchAllCars",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/adverts", {});
-      console.log(response.data);
-      return response.data;
+      const response = await axios.get("/adverts");
+      const allCars = response.data;
+
+      const localStorageCarIds = localStorage.getItem("favoriteCarIds");
+      const selectedCarIds = localStorageCarIds
+        ? JSON.parse(localStorageCarIds)
+        : [];
+
+      const filteredCars = allCars.filter((car) =>
+        selectedCarIds.includes(car.id)
+      );
+
+      return filteredCars;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

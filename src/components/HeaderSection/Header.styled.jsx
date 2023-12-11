@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 export const StyledHeader = styled.header`
   height: 80px;
   width: 100%;
-
   display: flex;
-  align-items: center;
-  background-color: ${theme.colors.primaryBlue};
+  background-color: ${theme.colors.secondaryBlue};
   color: ${theme.colors.bodyMain};
+  border-bottom: 2px solid ${theme.colors.primaryBlue};
 `;
 export const HeaderContainer = styled.div`
   width: 1213px;
@@ -41,19 +40,16 @@ export const MainNavigation = styled.nav`
 export const NavList = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
+  gap: 50px;
 `;
 
 export const NavListItem = styled.li``;
 
-export const NavListItemLink = styled(Link)`
-  cursor: pointer;
-  position: relative;
+export const LinkBlock = styled.div`
   display: flex;
   gap: 4px;
-  text-decoration: none;
-  color: ${theme.colors.bodyMain};
-
+  position: relative;
   &::after {
     position: absolute;
     content: "";
@@ -74,4 +70,20 @@ export const NavListItemLink = styled(Link)`
   &:hover {
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3);
   }
+`;
+
+export const NavListItemLink = styled(Link)`
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${theme.colors.bodyMain};
+
+  ${(props) =>
+    props.$active &&
+    `
+    padding: 12px;
+    border: 1px solid ${theme.colors.bodyMain};
+    border-radius: 20px;
+    background-color: ${theme.colors.primaryBlue};
+  `}
 `;

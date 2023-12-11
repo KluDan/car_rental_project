@@ -59,6 +59,11 @@ const CarCard = ({ car, onHeartClick, isFavorite, onLearnMoreClick }) => {
     onHeartClick(id);
   };
 
+  const formattedRentalPrice =
+    typeof rentalPrice === "string" && !rentalPrice.includes("$")
+      ? `$${rentalPrice}`
+      : rentalPrice;
+
   return (
     <StyledCarCard>
       <StyledCardMedia
@@ -72,7 +77,7 @@ const CarCard = ({ car, onHeartClick, isFavorite, onLearnMoreClick }) => {
           <span> {model},</span>
         </StyledCarTitle>
         <span> {year}</span>
-        <span>{rentalPrice}</span>
+        <span>{formattedRentalPrice}</span>
       </StyledCardMainInfo>
       <CarDetails details={Array.isArray(carDetails) ? carDetails : []} />
       <MainButton

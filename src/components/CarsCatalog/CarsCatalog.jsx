@@ -26,7 +26,7 @@ const CarsCatalog = () => {
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (isMounted.current) {
+    if (!cars.length && isMounted.current) {
       dispatch(fetchCars({ page: 1, limit }));
     } else {
       isMounted.current = true;
@@ -39,7 +39,7 @@ const CarsCatalog = () => {
         });
       }
     }
-  }, [dispatch, limit]);
+  }, [dispatch, cars.length, limit]);
 
   const handleHeartClick = (carId) => {
     if (selectedCarIds.includes(carId)) {
@@ -72,7 +72,7 @@ const CarsCatalog = () => {
           onLearnMoreClick={handleLearnMoreClick}
         />
       ))}
-      {selectedCar && ( // Проверяем, нужно ли открыть модальное окно
+      {selectedCar && (
         <CarDetailsModal
           isOpen={!!selectedCar}
           onClose={handleModalClose}

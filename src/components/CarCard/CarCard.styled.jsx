@@ -3,13 +3,15 @@ import { theme } from "../../theme";
 
 export const StyledCarCard = styled.article`
   width: 274px;
+  max-height: 100%;
   align-items: stretch;
-
   position: relative;
+  flex-direction: column;
 `;
 
 export const StyledCardMainInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
   color: ${theme.colors.primaryText};
   font-size: 16px;
   font-weight: 500;
