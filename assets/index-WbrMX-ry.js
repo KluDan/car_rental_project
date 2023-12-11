@@ -1,4 +1,4 @@
-import{s as t,t as o,j as e}from"./index-mQdeu8ZK.js";import{M as a}from"./MainButton-RxtSfQk1.js";const x=t.section`
+import{s as t,t as o,j as e}from"./index-oLWDv1pN.js";import{M as a}from"./MainButton-T5YUcmw_.js";const x=t.section`
   background-color: ${o.colors.secondaryBlue};
   height: 400px;
   padding-block: 20px;

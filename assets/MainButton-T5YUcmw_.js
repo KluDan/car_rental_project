@@ -1,4 +1,4 @@
-import{s as i,t,j as a}from"./index-mQdeu8ZK.js";const e=i.button`
+import{s as i,t,j as a}from"./index-oLWDv1pN.js";const e=i.button`
   width: ${o=>o.width};
   color: ${t.colors.bodyMain};
   font-size: 14px;
