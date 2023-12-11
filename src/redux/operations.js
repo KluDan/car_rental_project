@@ -44,6 +44,25 @@ export const fetchAllCars = createAsyncThunk(
   }
 );
 
+export const fetchCarsByIds = createAsyncThunk(
+  "favoritesCatalog/fetchCarsByIds",
+  async (carIds, thunkAPI) => {
+    try {
+      const fetchedCars = [];
+
+      for (const carId of carIds) {
+        const response = await axios.get(`/adverts/${carId}`);
+        const car = response.data;
+        fetchedCars.push(car);
+      }
+
+      return fetchedCars;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchFilteredCars = createAsyncThunk(
   "cars/fetchCars",
   async (params, thunkAPI) => {
