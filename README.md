@@ -17,15 +17,12 @@ Start the Development Server: npm run dev.
 
 - **Search for Cars:**
   Easily find the perfect rental car.
-
 - **Detailed Information:**
   Access comprehensive details for each car, including pricing, features, specifications, and rental company information. Make informed decisions with all the information you need at your fingertips.
-
 - **Advanced Filters:**
   Utilize powerful filters to refine your search results based on specific criteria.
-
 - **Add to Favorites:**
-  Create a user account to save your favorite cars for quick access. The "Add to Favorites" feature lets you build a list of preferred cars, making it easy to compare and revisit them later.
+  Create a user account to save your favorite cars for quick access.
 
 # Dependencies
 
