@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilterPriceValue } from "../../redux/carSlice";
+import { useDispatch } from "react-redux";
 
 import {
   ChevronIcon,

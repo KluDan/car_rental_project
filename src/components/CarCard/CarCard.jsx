@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
 import { theme } from "../../theme";
 import { CarDetails } from "../CarDetails";
-import { CarDetailsModal } from "../CarDetailsModal/CarDetailsModal";
 
 import HeartIcon from "../HeartIcon";
 import MainButton from "../MainButton";

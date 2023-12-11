@@ -15,7 +15,7 @@ const FilterSection = () => {
   const dispatch = useDispatch();
   const inputValue = useSelector(selectInputValue);
 
-  const handleSearchButtonClick = () => {
+  const handleSearchButtonClick = async () => {
     dispatch(resetCars());
     dispatch(setInputValue(inputValue));
 
@@ -23,7 +23,7 @@ const FilterSection = () => {
     if (inputValue) {
       requestParams.make = inputValue;
     }
-    dispatch(fetchFilteredCars(requestParams));
+    await dispatch(fetchFilteredCars(requestParams));
   };
 
   return (

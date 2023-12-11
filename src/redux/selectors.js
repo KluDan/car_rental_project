@@ -6,3 +6,4 @@ export const selectPageSize = (state) => state.cars.limit;
 export const selectTotalResults = (state) => state.cars.totalResults;
 export const selectInputValue = (state) => state.cars.inputValue;
 export const selectFilterPriceValue = (state) => state.cars.filterPriceValue;
+export const selectValue = (state) => state.filteredCars.inputValue;

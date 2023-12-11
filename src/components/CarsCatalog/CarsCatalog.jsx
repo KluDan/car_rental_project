@@ -9,7 +9,12 @@ import {
   removeSelectedCarId,
   selectSelectedCarIds,
 } from "../../redux/favoriteSlice";
-import { selectCars, selectError, selectPageSize } from "../../redux/selectors";
+import {
+  selectCars,
+  selectError,
+  selectIsLoading,
+  selectPageSize,
+} from "../../redux/selectors";
 
 import { fetchCars } from "../../redux/operations";
 import { CarDetailsModal } from "../CarDetailsModal/CarDetailsModal";
@@ -20,8 +25,10 @@ const CarsCatalog = () => {
   const error = useSelector(selectError);
   const limit = useSelector(selectPageSize);
   const selectedCarIds = useSelector(selectSelectedCarIds);
+  const isLoading = useSelector(selectIsLoading);
 
   const [selectedCar, setSelectedCar] = useState(null);
+  const [filteredMakes, setFilteredMakes] = useState([]);
 
   const isMounted = useRef(false);
 
@@ -57,29 +64,38 @@ const CarsCatalog = () => {
     setSelectedCar(null);
   };
 
+  const filteredCars = cars.filter((car) => {
+    if (filteredMakes.length === 0) {
+      return true;
+    }
+    return filteredMakes.includes(car.make);
+  });
+
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   return (
-    <StyledCatalogContainer>
-      {cars.map((car) => (
-        <CarCard
-          key={car.id}
-          car={car}
-          onHeartClick={() => handleHeartClick(car.id)}
-          isFavorite={selectedCarIds.includes(car.id)}
-          onLearnMoreClick={handleLearnMoreClick}
-        />
-      ))}
-      {selectedCar && (
-        <CarDetailsModal
-          isOpen={!!selectedCar}
-          onClose={handleModalClose}
-          carDetails={selectedCar}
-        />
-      )}
-    </StyledCatalogContainer>
+    <div>
+      <StyledCatalogContainer>
+        {filteredCars.map((car) => (
+          <CarCard
+            key={car.id}
+            car={car}
+            onHeartClick={() => handleHeartClick(car.id)}
+            isFavorite={selectedCarIds.includes(car.id)}
+            onLearnMoreClick={handleLearnMoreClick}
+          />
+        ))}
+        {selectedCar && (
+          <CarDetailsModal
+            isOpen={!!selectedCar}
+            onClose={handleModalClose}
+            carDetails={selectedCar}
+          />
+        )}
+      </StyledCatalogContainer>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ const favoriteSlice = createSlice({
   name: "favorite",
   initialState: {
     selectedCarIds: [],
-    selectedCars: [], // Store car details here
+    selectedCars: [],
     isLoading: false,
     error: null,
   },
