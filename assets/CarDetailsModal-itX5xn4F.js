@@ -1,4 +1,4 @@
-import{s as e,t as n,j as t,r as I,G as P}from"./index-U6mzutTs.js";import{M as H}from"./MainButton-zSt2GnQy.js";const G=e.ul`
+import{s as e,t as n,j as t,r as I,G as P}from"./index-yJyNpBsS.js";import{M as H}from"./MainButton-84Sp-0Lb.js";const G=e.ul`
   display: flex;
   row-gap: 4px;
   column-gap: 12px;
