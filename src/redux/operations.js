@@ -73,6 +73,7 @@ export const fetchFilteredCars = createAsyncThunk(
           page: params.page,
           limit: params.limit,
           make: params.make,
+          price: params.price
         },
       });
       console.log(response.data);

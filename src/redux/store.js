@@ -14,6 +14,7 @@ import { combineReducers } from "redux";
 
 import carReducer from "./carSlice";
 import favoriteReducer from "./favoriteSlice";
+import filterSlice from "./filterSlice";
 
 const persistConfig = {
   key: "root",
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cars: carReducer,
   favorite: favoriteReducer,
+  filter: filterSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

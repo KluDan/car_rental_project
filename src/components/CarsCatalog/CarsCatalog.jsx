@@ -12,12 +12,14 @@ import {
 import {
   selectCars,
   selectError,
+  selectInputValue,
   selectIsLoading,
   selectPageSize,
 } from "../../redux/selectors";
 
 import { fetchCars } from "../../redux/operations";
 import { CarDetailsModal } from "../CarDetailsModal/CarDetailsModal";
+import { setInputValue } from "../../redux/filterSlice";
 
 const CarsCatalog = () => {
   const dispatch = useDispatch();
@@ -28,12 +30,13 @@ const CarsCatalog = () => {
   const isLoading = useSelector(selectIsLoading);
 
   const [selectedCar, setSelectedCar] = useState(null);
-  const [filteredMakes, setFilteredMakes] = useState([]);
+  const filteredMakes = useSelector(selectInputValue);
 
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (!cars.length && isMounted.current) {
+    dispatch(setInputValue(""));
+    if (!filteredMakes.length && !cars.length && isMounted.current) {
       dispatch(fetchCars({ page: 1, limit }));
     } else {
       isMounted.current = true;
@@ -64,13 +67,6 @@ const CarsCatalog = () => {
     setSelectedCar(null);
   };
 
-  const filteredCars = cars.filter((car) => {
-    if (filteredMakes.length === 0) {
-      return true;
-    }
-    return filteredMakes.includes(car.make);
-  });
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -78,7 +74,7 @@ const CarsCatalog = () => {
   return (
     <div>
       <StyledCatalogContainer>
-        {filteredCars.map((car) => (
+        {cars.map((car) => (
           <CarCard
             key={car.id}
             car={car}

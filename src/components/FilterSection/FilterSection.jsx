@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resetCars, setInputValue } from "../../redux/carSlice";
+import { resetCars } from "../../redux/carSlice";
+import { setInputValue } from "../../redux/filterSlice";
 import { fetchFilteredCars } from "../../redux/operations";
-import { selectInputValue } from "../../redux/selectors";
+import { selectFilterPriceValue, selectInputValue } from "../../redux/selectors";
 
 import DropDownMakes from "../DropDownMakes/DropDownMakes";
 import DropDownPrice from "../DropDownPrice/DropDownPrice";
@@ -14,14 +15,21 @@ import { StyledFilterSection } from "./FilterSection.styled";
 const FilterSection = () => {
   const dispatch = useDispatch();
   const inputValue = useSelector(selectInputValue);
+  const priceValue = useSelector(selectFilterPriceValue);
 
   const handleSearchButtonClick = async () => {
-    dispatch(resetCars());
-    dispatch(setInputValue(inputValue));
+    if (inputValue.trim() === '') {
+      return; 
+    }
 
+    dispatch(resetCars());
+    
+    dispatch(setInputValue(inputValue));
+   
     const requestParams = { page: 1, limit: 12 };
-    if (inputValue) {
+    if (inputValue || priceValue) {
       requestParams.make = inputValue;
+      requestParams.price = priceValue;
     }
     await dispatch(fetchFilteredCars(requestParams));
   };
